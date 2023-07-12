@@ -17,8 +17,9 @@ header {
   padding: 20px 40px;
   background-color: darkblue;
   background: url('https://image.tmdb.org/t/p/w500/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)/8bcoRX3hQRHufLPSDREdvr3YMXx.jpg') no-repeat center center/cover;
-  background-blend-mode:color-dodge;
+  background-blend-mode: color-dodge;
 }
+
 /* header::before{
   content: "";
   position: absolute;
@@ -100,6 +101,14 @@ header {
   display: flex;
   width: 100%;
   padding: 30px 30px;
+}
+
+.active-dropdown {
+  position: absolute;
+  background-color: white;
+  top: auto;
+  z-index: 2;
+  
 }
 
 /* .search-category {
@@ -184,7 +193,7 @@ header {
 .burger-close {
   /* background-color: lightblue; */
   display: flex;
-  justify-content: right;
+  justify-content: center;
   padding-right: 30px;
 }
 
@@ -231,8 +240,8 @@ header {
   background-color: white;
   border-radius: 30px;
   transform: 0.3s;
-  font-size: 1rem;
-  font-weight: 400;
+  /* font-size: 1rem;
+  font-weight: 400; */
 }
 
 .active {
@@ -260,6 +269,7 @@ header {
 
 .movie-img-cont {
   width: 100%;
+  position: relative;
 }
 
 .movie-img-cont img {

@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import TrendingMovies from './components/TrendingMovies';
 import TrendingTV from "./components/TrendingTV";
 import { useState } from 'react';
-import InTheatresMovies from './components/InTheatresMovies';
+import TopMovies from './components/TopMovies';
 import TopRatedTV from './components/TopRatedTV';
 import UpComing from './components/UpComing';
 
@@ -37,11 +37,11 @@ function App() {
         <div className='column-head'>
           <h2 className='column-heading'>Trending</h2>
           <div className='selector-wrap'>
-            <div className='ancor'>
-              <h3><a onClick={trendingToggleM} className={trendingTogleM ? "active selector" : "selector"}>Movies</a></h3>
+            <div onClick={trendingToggleM} className={trendingTogleM ? "active selector " : "selector "}>
+              <h3><a className='ancor' >Movies</a></h3>
             </div>
-            <div className='ancor'>
-              <h3><a onClick={trendingToggleTV} className={trendingTogleTV ? "active selector" : "selector"}>TV</a></h3>
+            <div onClick={trendingToggleTV} className={trendingTogleTV ? "active selector ancor" : "selector ancor"}>
+              <h3><a className='ancor'>TV</a></h3>
             </div>
           </div>
         </div>
@@ -55,17 +55,17 @@ function App() {
         <div className='column-head'>
           <h2 className='column-heading'>Top Rated</h2>
           <div className='selector-wrap'>
-            <div className='ancor ancor-active'>
-              <h3><a onClick={topRatedToggleM} className={topRatedTogleM ? "active selector" : "selector"}>Movies</a></h3>
+            <div onClick={topRatedToggleM} className={topRatedTogleM ? "active selector" : "selector"}>
+              <h3><a className='ancor'>Movies</a></h3>
             </div>
-            <div className='ancor'>
-              <h3><a onClick={topRatedToggleTV} className={topRatedTogleTV ? "active selector" : "selector"}>TV</a></h3>
+            <div onClick={topRatedToggleTV} className={topRatedTogleTV ? "active selector" : "selector"}>
+              <h3><a className='ancor'>TV</a></h3>
             </div>
           </div>
         </div>
         <div className='movie-container'>
 
-          {topRatedTogleM ? <InTheatresMovies /> : <TopRatedTV />}
+          {topRatedTogleM ? <TopMovies /> : <TopRatedTV />}
 
         </div>
       </section>

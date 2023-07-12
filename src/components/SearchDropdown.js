@@ -1,5 +1,8 @@
 import React from 'react';
 import { RxCross2 } from "react-icons/rx";
+ import ProgressBar from "../features/progressBar";
+
+
 export default function SearchDropdown(props) {
     const { fetchedData, btnClick, setToggleDropdown } = props;
     const deActiveDropdown = () => {
@@ -23,10 +26,14 @@ export default function SearchDropdown(props) {
                         fetchedData.results?.map((e) => {
                             return (
                                 <div className='result-card'>
-                                    <a href='' className='search-img-container'> <img src={`https://image.tmdb.org/t/p/w500` + e.poster_path}></img></a>
+                                    <a href='' className='search-img-container'>
+                                        <img src={`https://image.tmdb.org/t/p/w500` + e.poster_path}></img>
+                                        {/* <ProgressBar progress={e.vote_average * 10} color={e.adult ? "rgb(231, 2, 2)" : "rgb(0, 255, 42)"} /> */}
+
+                                    </a>
                                     <div className='result-details'>
-                                        <h2>{btnClick?e.original_title:e.original_name}</h2>
-                                        <p className='search-release-date'>{btnClick ?e.release_date: e.first_air_date}</p>
+                                        <h2>{btnClick ? e.original_title : e.original_name}</h2>
+                                        <p className='search-release-date'>{btnClick ? e.release_date : e.first_air_date}</p>
                                         <p className='story-line'>{e.overview.substring(0, 150)}...</p>
                                     </div>
                                 </div>

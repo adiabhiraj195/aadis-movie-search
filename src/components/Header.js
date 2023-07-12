@@ -19,33 +19,39 @@ export default function Header() {
 
     const fetchMdata = async (e) => {
         e.preventDefault();
-        try {
-            const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchVal}&include_adult=false&language=en-US&page=1`, options);
-            const mData = await data.json();
-            setData(mData);
-            setBtnClick(true);
-            console.log(data);
-        } catch (err) {
-            console.error(err);
-        };
+        if (searchVal != "") {
+            try {
+                const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchVal}&include_adult=false&language=en-US&page=1`, options);
+                const mData = await data.json();
+                setData(mData);
+                setBtnClick(true);
+                // console.log(data);
+            } catch (err) {
+                console.error(err);
+            };
+            setToggleDropdown(true);
+            // console.log("data fetched");
 
-        setToggleDropdown(true);
-        console.log("data fetched");
+        }
+
     }
     const fetchTVdata = async (e) => {
         e.preventDefault();
-        try {
-            const data = await fetch(`https://api.themoviedb.org/3/search/tv?query=${searchVal}&include_adult=false&language=en-US&page=1`, options);
-            const mData = await data.json();
-            setData(mData);
-            setBtnClick(false);
-            console.log(data);
-        } catch (err) {
-            console.error(err);
-        };
+        if (searchVal != "") {
 
-        setToggleDropdown(true);
-        console.log("data fetched");
+            try {
+                const data = await fetch(`https://api.themoviedb.org/3/search/tv?query=${searchVal}&include_adult=false&language=en-US&page=1`, options);
+                const mData = await data.json();
+                setData(mData);
+                setBtnClick(false);
+                // console.log(data);
+            } catch (err) {
+                console.error(err);
+            };
+
+            setToggleDropdown(true);
+            // console.log("data fetched");
+        }
     }
     return (
         <>
@@ -75,9 +81,15 @@ export default function Header() {
                     </div>
                 </div>
             </header>
-            <section className='containers'>
+
+            {/* <section className='containers'>
                 {toggleDropdown && <SearchDropdown fetchedData={data} setToggleDropdown={setToggleDropdown} btnClick={btnClick} toggle={toggleDropdown} />}
-            </section>
+            </section> */}
+            {toggleDropdown &&
+                <section className={toggleDropdown ? "active-dropdown containers" : "containers"}>
+                    <SearchDropdown fetchedData={data} setToggleDropdown={setToggleDropdown} btnClick={btnClick} toggle={toggleDropdown} />
+                </section>
+            }
         </>
     )
 }

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import ProgressBar from "../features/progressBar";
 
-export default function InTheatresMovies() {
+
+export default function TopMovies() {
     const [data, setData] = useState({});
     const api = "64c6d39edb8c3a83236344139f4e39b8";
     const options = {
@@ -32,8 +34,9 @@ export default function InTheatresMovies() {
                     <div className='movie-card' key={e.id}>
                         <div className='movie-img-cont'>
                             <img src={"https://image.tmdb.org/t/p/w500" + e.poster_path}></img>
+                            <ProgressBar progress ={e.vote_average*10} color={e.adult?"rgb(231, 2, 2)":"rgb(0, 255, 42)"}/>
                         </div>
-                        <h4 className='movie-title'> {e.original_title}</h4>
+                        <h4 className='movie-title'><a href='#'> {e.original_title}</a></h4>
                         <p className='release-date'>{e.release_date}</p>
                     </div>
                 </>;
