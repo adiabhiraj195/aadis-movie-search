@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProgressBar from "../features/progressBar";
+import { Link } from 'react-router-dom';
 
 
 export default function TopRatedTV() {
@@ -18,7 +19,7 @@ export default function TopRatedTV() {
             const data = await fetch('https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1', options);
             const mData = await data.json();
             setData(mData);
-            console.log(mData);
+            // console.log(mData);
         } catch (err) {
             console.error(err);
         };
@@ -31,15 +32,19 @@ export default function TopRatedTV() {
         <>
             {data.results?.map((e) => {
                 return <>
-                    <div className='movie-card' key={e.id}>
-                        <div className='movie-img-cont'>
-                            <img src={"https://image.tmdb.org/t/p/w500" + e.poster_path}></img>
-                            <ProgressBar progress ={e.vote_average*10} color={e.adult?"rgb(231, 2, 2)":"rgb(0, 255, 42)"}/>
+                    <Link to={"/details/" + e.id}>
+                        <div className='movie-card' key={e.id}>
+                            <div className='movie-img-cont'>
+                                <img src={"https://image.tmdb.org/t/p/w500" + e.poster_path}></img>
+                                <div className='progress-container'>
+                                    <ProgressBar progress={e.vote_average * 10} color={e.adult ? "rgb(231, 2, 2)" : "rgb(0, 255, 42)"} />
+                                </div>
 
+                            </div>
+                            <h4 className='movie-title'> {e.original_name}</h4>
+                            <p className='release-date'>{e.first_air_date}</p>
                         </div>
-                        <h4 className='movie-title'> {e.original_name}</h4>
-                        <p className='release-date'>{e.first_air_date}</p>
-                    </div>
+                    </Link>
                 </>;
             })}
         </>

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+
 import { AiOutlineHeart, AiOutlineUnorderedList } from "react-icons/ai"
 import { BsBookmark } from "react-icons/bs";
-import SearchDropdown from './SearchDropdown';
+
+import SearchDropdown from '../components/SearchDropdown';
+
 
 export default function Header() {
     let [searchVal, setSearchVal] = useState("");
